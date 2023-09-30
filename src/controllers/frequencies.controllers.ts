@@ -8,6 +8,8 @@ import {
   listFrequencyService,
   listFrequencyStudentService,
   listRequestService,
+  resumeFrequencySchoolService,
+  resumeFrequencyService,
   retrieveFrequencyService,
   updateFrequencyService,
   updateFrequencyStudentService,
@@ -41,6 +43,26 @@ export const updateFrequencyController = async (
   res: Response,
 ) => {
   const frequency = await updateFrequencyService(req.body, req.params.id)
+  return res.json(frequency)
+}
+
+export const resumeFrequencyController = async (
+  req: Request,
+  res: Response,
+) => {
+  const frequency = await resumeFrequencyService(req.params.year_id, req.query)
+  return res.json(frequency)
+}
+
+export const resumeFrequencySchoolController = async (
+  req: Request,
+  res: Response,
+) => {
+  const frequency = await resumeFrequencySchoolService(
+    req.params.year_id,
+    req.params.school_id,
+    req.query,
+  )
   return res.json(frequency)
 }
 
